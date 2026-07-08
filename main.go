@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"movies-api/collector"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+
+	books, err := collector.CollectorB()
+	if err != nil {
+		fmt.Println("Error collecting books:", err)
+		return
+	}
+
+	for _, book := range books {
+		fmt.Printf("Title: %s, Price: %.2f\n", book.Title, book.Price)
+	}
 }
